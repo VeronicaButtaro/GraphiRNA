@@ -16,7 +16,7 @@ if __name__ == "__main__":
     """
 
     processor = MiRNADataProcessor(
-        raw_data_path="../data/raw",
+        normalized_data_path="../data/normalized",
         processed_data_path="../data/processed"
     )
 
