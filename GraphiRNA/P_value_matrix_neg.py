@@ -53,7 +53,6 @@ def normalize_p_value(p_value_matrix, output1,file_suffix="default",path="../dat
     weights = []
     artificial_nodes = {}
 
-    new_node_counter = len(p_value_matrix)  # Indice per i nodi artificiali
 
     for (source, target), weight in stacked.items():
         abs_weight = abs(weight)

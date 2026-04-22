@@ -4,30 +4,30 @@ from sklearn.model_selection import StratifiedKFold
 
 
 class MiRNADataProcessor:
-    def __init__(self, raw_data_path="../data/raw", processed_data_path="../data/processed"):
-        self.raw_data_path = raw_data_path
+    def __init__(self, normalized_data_path="../data/normalized", processed_data_path="../data/processed"):
+        self.normalized_data_path = normalized_data_path
         self.processed_data_path = processed_data_path
         self.df_concat = None
 
     def load_data(self):
 
-        self.df_na = pd.read_csv(f"{self.raw_data_path}/df.na.csv", sep=',').rename(
+        self.df_na = pd.read_csv(f"{self.normalized_data_path}/df.na.csv", sep=',').rename(
             columns={'miRNAme': 'ID'}).set_index('ID')
         self.df_na = self.df_na[['sequence.miRBase']].rename(columns={'sequence.miRBase': 'Sequence'})
 
-        self.df_84 = pd.read_csv(f"{self.raw_data_path}/GSE120584(1).csv", sep=',')
-        self.df_84_meta = pd.read_csv(f"{self.raw_data_path}/GSE120584.metadata (1).csv", sep=',').set_index('sample')
+        self.df_84 = pd.read_csv(f"{self.normalized_data_path}/GSE120584(1).csv", sep=',')
+        self.df_84_meta = pd.read_csv(f"{self.normalized_data_path}/GSE120584.metadata (1).csv", sep=',').set_index('sample')
 
-        self.df_93 = pd.read_csv(f"{self.raw_data_path}/GSE150693 (1).csv", sep=',')
-        self.df_93_meta = pd.read_csv(f"{self.raw_data_path}/GSE150693.metadata (1).csv", sep=',').set_index('sample')
+        self.df_93 = pd.read_csv(f"{self.normalized_data_path}/GSE150693 (1).csv", sep=',')
+        self.df_93_meta = pd.read_csv(f"{self.normalized_data_path}/GSE150693.metadata (1).csv", sep=',').set_index('sample')
         self.df_93_meta['disease'] = self.df_93_meta['disease'].replace({'MCI-C': 'MCI'})
 
-        self.df_89 = pd.read_csv(f"{self.raw_data_path}/GSE215789 (1).csv", sep=',')
-        self.df_89_meta = pd.read_csv(f"{self.raw_data_path}/GSE215789_metadata (1).csv", sep=',').set_index('sample')
+        self.df_89 = pd.read_csv(f"{self.normalized_data_path}/GSE215789 (1).csv", sep=',')
+        self.df_89_meta = pd.read_csv(f"{self.normalized_data_path}/GSE215789_metadata (1).csv", sep=',').set_index('sample')
         self.df_89_meta['disease'] = self.df_89_meta['disease'].replace({'Control': 'NC'})
 
-        self.df_23 = pd.read_csv(f"{self.raw_data_path}/GSE242923 (1).csv")
-        self.df_23_meta = pd.read_csv(f"{self.raw_data_path}/GSE242923.metadata (1).csv").set_index('Sample')
+        self.df_23 = pd.read_csv(f"{self.normalized_data_path}/GSE242923 (1).csv")
+        self.df_23_meta = pd.read_csv(f"{self.normalized_data_path}/GSE242923.metadata (1).csv").set_index('Sample')
         self.df_23_meta['Disease'] = self.df_23_meta['Disease'].replace({'Control': 'NC', 'AD': 'AD'})
 
     def preprocess(self):
@@ -84,7 +84,7 @@ if __name__ == "__main__":
 
 
     processor = MiRNADataProcessor(
-        raw_data_path="../data/raw",
+        normalized_data_path="../data/normalized",
         processed_data_path="../data/processed"
     )
 
