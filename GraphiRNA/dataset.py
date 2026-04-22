@@ -15,16 +15,16 @@ class MiRNADataProcessor:
             columns={'miRNAme': 'ID'}).set_index('ID')
         self.df_na = self.df_na[['sequence.miRBase']].rename(columns={'sequence.miRBase': 'Sequence'})
 
-        self.df_84 = pd.read_csv(f"{self.normalized_data_path}/GSE120584(1).csv", sep=',')
-        self.df_84_meta = pd.read_csv(f"{self.normalized_data_path}/GSE120584.metadata (1).csv", sep=',').set_index('sample')
+        self.df_84 = pd.read_csv(f"{self.normalized_data_path}/GSE120584.csv", sep=',')
+        self.df_84_meta = pd.read_csv(f"{self.normalized_data_path}/GSE120584.metadata.csv", sep=',').set_index('sample')
 
-        self.df_93 = pd.read_csv(f"{self.normalized_data_path}/GSE150693 (1).csv", sep=',')
-        self.df_93_meta = pd.read_csv(f"{self.normalized_data_path}/GSE150693.metadata (1).csv", sep=',').set_index('sample')
+        self.df_93 = pd.read_csv(f"{self.normalized_data_path}/GSE150693.csv", sep=',')
+        self.df_93_meta = pd.read_csv(f"{self.normalized_data_path}/GSE150693.metadata.csv", sep=',').set_index('sample')
         self.df_93_meta['disease'] = self.df_93_meta['disease'].replace({'MCI-C': 'MCI'})
 
 
-        self.df_23 = pd.read_csv(f"{self.normalized_data_path}/GSE242923 (1).csv")
-        self.df_23_meta = pd.read_csv(f"{self.normalized_data_path}/GSE242923.metadata (1).csv").set_index('Sample')
+        self.df_23 = pd.read_csv(f"{self.normalized_data_path}/GSE242923.csv")
+        self.df_23_meta = pd.read_csv(f"{self.normalized_data_path}/GSE242923.metadata.csv").set_index('Sample')
         self.df_23_meta['Disease'] = self.df_23_meta['Disease'].replace({'Control': 'NC', 'AD': 'AD'})
 
     def preprocess(self):
