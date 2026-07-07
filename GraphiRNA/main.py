@@ -51,7 +51,7 @@ if __name__ == "__main__":
         correlation_output_path = f"{processor.processed_data_path}/correlation_matrix_train_05_fold_{fold}.csv"
         correlation_output_correct_path = f"{processor.processed_data_path}/correlation_matrix_correct_train_05_fold_{fold}.csv"
 
-        execute_corr_graph(train_df, 0.05, correlation_output_path,correlation_output_path)
+        execute_corr_graph(train_df, 0.05, correlation_output_path,correlation_output_correct_path)
 
         corr_matrix = pd.read_csv(correlation_output_path, index_col=0)
 
@@ -74,7 +74,7 @@ if __name__ == "__main__":
         edge_df = pd.read_csv(graph_output_path)
 
         graph_conv_output_path = f"{processor.processed_data_path}/graph_embeddings_05_{dim_emb}_fold_{fold}_.csv"
-        execute_graph_conv(edge_df, complexive_df,{dim_emb}, graph_conv_output_path)
+        execute_graph_conv(edge_df, complexive_df,dim_emb, graph_conv_output_path)
         node_embeddings=pd.read_csv(graph_conv_output_path,index_col=0)
 
         prod_train_path=f"{processor.processed_data_path}/subj_embeddings_train_05_fold_{fold}_{dim_emb}.csv"
