@@ -1,5 +1,5 @@
 import pandas as pd
-
+import os
 from sklearn.model_selection import StratifiedKFold
 
 
@@ -8,6 +8,7 @@ class MiRNADataProcessor:
         self.normalized_data_path = normalized_data_path
         self.processed_data_path = processed_data_path
         self.df_concat = None
+        os.makedirs(self.processed_data_path, exist_ok=True)
 
     def load_data(self):
 
